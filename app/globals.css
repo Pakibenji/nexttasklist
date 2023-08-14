@@ -82,6 +82,9 @@ h1::after {
     font-size: 4rem ;
     margin: 2rem auto;
     color: #38d5b8;
+}
+
+.spinner svg {
     animation: rotate 2s infinite;
 }
 @keyframes rotate{
