@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import AddTask from "../components/AddTask";
 import { ITask } from "../types";
-import { TbFidgetSpinner } from "react-icons/tb"
+import { TbFidgetSpinner } from "react-icons/tb";
 import NoTask from "@/components/NoTask";
 import Task from "@/components/Task";
 export default function Home() {
@@ -11,8 +11,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [allTasks, setAllTasks] = useState([]);
 
-  const handleCreateTask = async() => {
-    setIsLoading(true)
+  const handleCreateTask = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/task/new", {
         method: "POST",
@@ -20,40 +20,61 @@ export default function Home() {
           task: task,
         }),
       });
-      if(response.ok) {
-        setTask('')
-        fetchTasks()
+      if (response.ok) {
+        setTask("");
+        fetchTasks();
+      } else {
+        console.log("error");
       }
-      else {
-        console.log('error')
-      }
+    } catch (error) {
+      console.log(error);
     }
-    catch(error) {
-      console.log(error)
-    }
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
-  const handleCompleteTask = async(id: string) => {
-  }
-
-  const handleDeleteTask = async(id: string) => {
-  }
-  const fetchTasks = async() => {
+  const handleCompleteTask = async (id: string) => {
     try {
-      const response = await fetch("/api/task/all")
-      const data = await response.json()
-      setAllTasks(data)
-      setIsLoading(false)
+      const res = await fetch(`/api/task/complete/${id}`, {
+        method: "PATCH",
+      });
+      if (res.ok) {
+        await fetchTasks();
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log("Error fetching tasks:", error)
-    }
-  }
+  };
 
-    useEffect(() => {
-      fetchTasks()
-    }, [])
+  const handleDeleteTask = async (id: string) => {
+    try {
+      const res = await fetch(`/api/task/delete/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setAllTasks(allTasks.filter((task: ITask) => task._id !== id));
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch("/api/task/all");
+      const data = await response.json();
+      setAllTasks(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("Error fetching tasks:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <>
@@ -64,19 +85,25 @@ export default function Home() {
         handleCreateTask={handleCreateTask}
       />
       {isLoading ? (
-        <div className="spinner"><TbFidgetSpinner/></div>
+        <div className="spinner">
+          <TbFidgetSpinner />
+        </div>
       ) : (
         <div className="task-list">
           {allTasks.length > 0 ? (
             allTasks.map((individualTask: ITask) => (
-              <Task key={individualTask._id} individualTask={individualTask} handleCompleteTask={handleCompleteTask} handleDeleteTask={handleDeleteTask} />
+              <Task
+                key={individualTask._id}
+                individualTask={individualTask}
+                handleCompleteTask={handleCompleteTask}
+                handleDeleteTask={handleDeleteTask}
+              />
             ))
           ) : (
             <NoTask />
           )}
         </div>
       )}
-
     </>
   );
 }

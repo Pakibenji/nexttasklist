@@ -1,119 +1,140 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #000000;
+  font-family: "Roboto", sans-serif;
+  background-color: black;
 }
 
 h1 {
-    display: flex;
-    flex-direction: column;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #ffffff;
-    background-color: #000000;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    box-shadow: inset 0px -2px 0px 0 rgba(5, 164, 113, 0.8);
+  display: flex;
+  flex-direction: column;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #e6e0e0;
+  background: black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: inset 0px -2px 0px 0 rgba(5, 164, 113, 0.8);
 }
 h1::after {
-    content: '';
-    display: block;
-    width: 75%;
-    height: 8px;
-    background-color: #38d5b8;
-    justify-content: center;
-    margin: 0 auto;
-    border-radius: 2px;
+  content: "";
+  display: block;
+  width: 75%;
+  height: 8px;
+  background-color: #38d5b8;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 2px;
 }
 .addtask-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 2rem auto;
-    width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem auto;
+  width: 50%;
+  
 }
 
 .task-input {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: #ffffff;
-    background-color: rgb(104, 104, 104);
-    border-radius: 5px;
-    border: none;
-    border-bottom: 2px solid #38d5b8;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem auto;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: rgb(104, 104, 104);
+  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid #38d5b8;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
 }
 .task-input::placeholder {
-    color: #38d5b8;
+  color: #38d5b8;
 }
 .task-input:focus {
-    outline: none;
+  outline: none;
 }
 
 .task-btn {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #3f3f3f;
-    background-color: #38d5b8;
-    border-radius: 5px;
-    border: none;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 1rem auto 1rem 0.5rem;
-    cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #3f3f3f;
+  background-color: #38d5b8;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 1rem auto 1rem 0.5rem;
+  cursor: pointer;
 }
 
-.spinner{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem ;
-    margin: 2rem auto;
-    color: #38d5b8;
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  margin: 2rem auto;
+  color: #38d5b8;
 }
 
 .spinner svg {
-    animation: rotate 2s infinite;
+  animation: rotate 2s infinite;
 }
-@keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .no-task {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    margin: 2rem auto;
-    color: #38d5b8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin: 2rem auto;
+  color: #38d5b8;
 }
 
 .task {
-    display: flex;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #ffffff;
-    border-radius: 5px;
-    border-bottom: 2px solid #38d5b8;
-    justify-content: center;
-    text-align: center;
-    width: 50%;
-    margin: 0 auto;
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  justify-content: space-between;
+  width: 60%;
+  margin: 1.5rem auto;
+}
+
+.task h3 {
+  border-bottom: 2px solid #38d5b8;
+  padding-bottom: 0.2rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #38d5b8;
+}
+
+.task button {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #38d5b8;
+  background-color: black;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.btncompleted {
+  display: none;
 }
